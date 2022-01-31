@@ -1,0 +1,36 @@
+import { createContext, useReducer } from 'react'
+import AlertReducer from './AlertReducer'
+
+const AlertContext = createContext()
+
+export const AlertProvider = ({ children }) => {
+  const initalState = null
+
+  const [state, dispatch] = useReducer(AlertReducer, initalState)
+
+  const setAlert = (msg, type) => {
+    dispatch({
+      type: 'SET_ALERT',
+      dispatch: { msg, type }
+    })
+
+    setTimeout(() => {
+      dispatch({
+        type: 'REMOVE_ALERT'
+      })
+    }, 3000)
+  }
+
+  return (
+    <AlertContext.Provider
+      value={{
+        alert: state,
+        setAlert
+      }}
+    >
+      {children}
+    </AlertContext.Provider>
+  )
+}
+
+export default AlertContext

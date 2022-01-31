@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Navbar from './Components/Layouts/Navbar'
+import Footer from './Components/Layouts/Footer'
+import Home from './Pages/Home'
+import About from './Pages/About'
+import Saved from './Pages/Saved'
+import Notfound from './Pages/Notfound'
+import { GithubProvider } from './Context/github/GithubContext'
+import { AlertProvider } from './Context/alert/AlertContext'
+import User from './Pages/User'
+// import Alert from './Components/Layouts/Alert'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <GithubProvider>
+        <AlertProvider>
+          <div className="flex flex-col justify-between h-screen">
+            <Navbar />
+            <main className="container mx-auto px-3 pb-12">
+              {/* <Alert /> */}
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/saved" element={<Saved />} />
+                <Route path="/user/:login" element={<User />} />
+                <Route path="/notfound" element={<Notfound />} />
+                <Route path="/*" element={<Notfound />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </AlertProvider>
+      </GithubProvider>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
