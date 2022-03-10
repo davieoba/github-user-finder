@@ -18,5 +18,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
   - The data are kept in state using React Hooks
   - styling with Tailwind css
 
-Reference: Brad Traversy course on Udemy, I followed most of the tutorial but the saved user feature was completely implemented by myself. 
+Reference: Brad Traversy course on Udemy, I followed most of the tutorial but I implemented the save a user feature. 
 
